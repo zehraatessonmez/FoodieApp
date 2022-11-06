@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="toolbarYemekDetayBaslik"
+            type="String" />
+        
+        <variable
+            name="detayFragment"
+            type="com.zehraatessonmez.foodieapp.ui.fragment.YemekDetayFragment" />
+
+
+        <variable
+            name="yemekNesnesi"
+            type="com.zehraatessonmez.foodieapp.data.entity.Yemekler" />
+
+        <variable
+            name="zehra"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.YemekDetayFragment">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarYemekDetay"
+            app:title="@{toolbarYemekDetayBaslik}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imageViewYemekResim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarYemekDetay"
+            app:srcCompat='@drawable/ayran' />
+
+        <TextView
+            android:id="@+id/textViewYemekAdi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text='@{yemekNesnesi.yemek_adi}'
+            app:fontFamily="@font/barlow_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewYemekResim" />
+
+        <TextView
+            android:id="@+id/textViewYemekFiyat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{Integer.toString(yemekNesnesi.yemek_fiyat) + '₺'}"
+            app:fontFamily="@font/barlow_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewYemekAdi" />
+
+        <Button
+            android:id="@+id/buttonArti"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:fontFamily="@font/barlow_medium"
+            android:text="+"
+            android:textSize="20sp"
+            app:backgroundTint="@color/yesil"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textViewAdet"
+            app:layout_constraintTop_toBottomOf="@+id/textViewYemekFiyat" />
+
+        <Button
+            android:id="@+id/buttonEksi"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:fontFamily="@font/barlow_medium"
+            android:text="-"
+            android:textSize="20sp"
+            app:backgroundTint="@color/yesil"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewAdet"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewYemekFiyat" />
+
+        <TextView
+            android:id="@+id/textViewAdet"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="1"
+            android:textAlignment="center"
+            app:fontFamily="@font/barlow_medium"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonArti"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonEksi"
+            app:layout_constraintTop_toBottomOf="@+id/textViewYemekFiyat" />
+
+
+        <Button
+            android:id="@+id/buttonSepeteEkle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            app:fontFamily="@font/barlow_medium"
+            android:onClick="@{() -> detayFragment.buttonSepeteYemekEkle(yemekNesnesi.yemek_id,yemekNesnesi.yemek_adi,yemekNesnesi.yemek_resim_adi,yemekNesnesi.yemek_fiyat,textViewAdet.getText().toString())}"
+            android:text="Sepete Ekle"
+            app:backgroundTint="@color/narCicegi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewYemekFiyat" />
+
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:src="@drawable/ev_resim"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

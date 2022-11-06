@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+            <variable name="sepetToolbarBaslik" type="String" />
+            <variable name="sepetFragment" type="com.zehraatessonmez.foodieapp.ui.fragment.SepetFragment" />
+            <variable name="sepetAdapter" type="com.zehraatessonmez.foodieapp.ui.adapter.SepetAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.SepetFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarSepet"
+            style="@style/titleStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{sepetToolbarBaslik}" />
+
+        <TextView
+            android:id="@+id/textViewSepetBos"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:text="SEPETİNİZ BOŞ"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarSepet" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSepet"
+            android:layout_width="0dp"
+            android:layout_height="500dp"
+            android:adapter="@{sepetAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarSepet" />
+
+        <Button
+            android:id="@+id/buttonBitir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:text="Bitir"
+            app:backgroundTint="@color/yesil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/EvResim"
+            app:layout_constraintTop_toBottomOf="@+id/rvSepet" />
+
+        <ImageView
+            android:id="@+id/EvResim"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="19dp"
+            android:src="@drawable/ev_resim"
+            app:layout_constraintEnd_toStartOf="@+id/buttonBitir"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvSepet" />
+
+        <TextView
+            android:id="@+id/textViewToplam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/buttonBitir"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/EvResim"
+            app:layout_constraintTop_toBottomOf="@+id/rvSepet" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
